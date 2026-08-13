@@ -166,6 +166,14 @@
   .file .meta{flex:1;}
   .file .fname{font-family:var(--mono); font-size:14px; font-weight:600;}
   .file .fdesc{color:var(--muted); font-size:13px; margin-top:2px;}
+  .file-multi{cursor:default;}
+  .file-multi:hover{border-color:var(--line); transform:none;}
+  .file-links{display:flex; gap:14px; margin-top:8px;}
+  .file-links a{
+    font-family:var(--mono); font-size:12.5px; font-weight:600;
+    color:var(--cyan); text-decoration:none; border-bottom:1px solid transparent;
+  }
+  .file-links a:hover{border-bottom-color:var(--cyan);}
   .placeholder-note{
     font-family:var(--mono); font-size:12px; color:var(--amber); margin-top:2px;
   }
@@ -277,20 +285,17 @@
       </summary>
       <div class="folder-desc">Модификации к играм — правки геймплея, новый контент, фиксы.</div>
       <div class="file-list">
-        <a class="file" href="#">
+        <div class="file file-multi">
           <span class="ext">MOD</span>
           <span class="meta">
-            <div class="fname">Название мода 1</div>
-            <div class="fdesc">Короткое описание: что добавляет / меняет мод.</div>
+            <div class="fname">Twitch Chat in Minecraft</div>
+            <div class="fdesc">Мод для Minecraft (Fabric / NeoForge), который выводит чат с Twitch прямо в игру — видно только тебе, никто на сервере сообщений не увидит.</div>
+            <div class="file-links">
+              <a href="https://github.com/san5ezez/Twitch-Chat-in-Minecraft" target="_blank" rel="noopener">GitHub →</a>
+              <a href="https://modrinth.com/mod/twitch-chat-in-minecraft" target="_blank" rel="noopener">Modrinth →</a>
+            </div>
           </span>
-        </a>
-        <a class="file" href="#">
-          <span class="ext">MOD</span>
-          <span class="meta">
-            <div class="fname">Название мода 2</div>
-            <div class="fdesc">Короткое описание проекта.</div>
-          </span>
-        </a>
+        </div>
       </div>
     </details>
 
@@ -302,15 +307,7 @@
         <span class="folder-count">плагины</span>
       </summary>
       <div class="folder-desc">Плагины для серверов и других платформ.</div>
-      <div class="file-list">
-        <a class="file" href="#">
-          <span class="ext">JAR</span>
-          <span class="meta">
-            <div class="fname">Название плагина 1</div>
-            <div class="fdesc">Что делает плагин, для какой платформы.</div>
-          </span>
-        </a>
-      </div>
+      <div class="file-list"></div>
     </details>
 
     <details class="folder">
@@ -322,11 +319,11 @@
       </summary>
       <div class="folder-desc">Android-приложения.</div>
       <div class="file-list">
-        <a class="file" href="#">
+        <a class="file" href="https://san5ezez.github.io/UniScribe/" target="_blank" rel="noopener">
           <span class="ext">APK</span>
           <span class="meta">
-            <div class="fname">Название приложения 1</div>
-            <div class="fdesc">Что делает приложение.</div>
+            <div class="fname">UniScribe — Умный Конспект Лекций</div>
+            <div class="fdesc">Android-приложение на Kotlin + Jetpack Compose: превращает аудиозаписи лекций в структурированные текстовые конспекты с помощью Gemini 2.5 Flash. Офлайн-очередь, аудиоплеер, экспорт в PDF.</div>
           </span>
         </a>
       </div>
@@ -382,13 +379,15 @@
     <div class="msg">Весь код и актуальные проекты — в моём GitHub. Открыт к предложениям и вопросам.</div>
     <div class="btn-row">
       <a class="btn" href="https://github.com/san5ezez" target="_blank" rel="noopener">github.com/san5ezez</a>
+      <a class="btn ghost" href="http://t.me/flight_san" target="_blank" rel="noopener">Telegram</a>
+      <a class="btn ghost" href="https://t.me/san4ezez_fl" target="_blank" rel="noopener">ТГ-канал</a>
       <a class="btn ghost" href="#about">↑ наверх</a>
     </div>
   </div>
 </section>
 
 <footer>
-  san5ezez © <span id="year"></span> — сделано на чистом HTML/CSS/JS
+  san5ezez © <span id="year"></span>
 </footer>
 
 <script>
