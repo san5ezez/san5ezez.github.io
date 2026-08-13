@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>san5ezez — Александр, разработчик</title>
+<meta name="description" content="Портфолио разработчика Александра (san5ezez): моды, плагины, Android-приложения, Python-скрипты и игры на Unity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #10131a;
+    --panel: #171b25;
+    --panel-2: #1d2230;
+    --line: #2a3040;
+    --text: #e7e9f0;
+    --muted: #8992a8;
+    --cyan: #5fe6cf;
+    --amber: #f2a65a;
+    --pink: #e2678a;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 500px at 85% -10%, rgba(95,230,207,0.08), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(242,166,90,0.06), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--cyan); color:#0a0c10;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; gap:10px;
+    padding:12px 24px;
+    background:rgba(16,19,26,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    font-family:var(--mono); font-size:13px; color:var(--muted);
+  }
+  .dots{display:flex; gap:6px; margin-right:6px;}
+  .dots span{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .dots span:nth-child(1){background:#e2678a;}
+  .dots span:nth-child(2){background:#f2a65a;}
+  .dots span:nth-child(3){background:#5fe6cf;}
+  .path{color:var(--text);}
+  .path b{color:var(--cyan); font-weight:500;}
+  .topbar nav{margin-left:auto; display:flex; gap:18px;}
+  .topbar nav a{text-decoration:none; color:var(--muted); transition:color .15s;}
+  .topbar nav a:hover{color:var(--cyan);}
+
+  /* ---------- hero / terminal ---------- */
+  .hero{
+    max-width:920px; margin:0 auto; padding:72px 24px 40px;
+  }
+  .terminal{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,0.6);
+  }
+  .terminal-head{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 14px;
+    background:var(--panel-2);
+    border-bottom:1px solid var(--line);
+    font-family:var(--mono); font-size:12px; color:var(--muted);
+  }
+  .terminal-body{
+    padding:22px 24px 26px;
+    font-family:var(--mono);
+    font-size:15px;
+  }
+  .terminal-body .muted{color:var(--muted);}
+  .terminal-body .cyan{color:var(--cyan);}
+  .terminal-body .amber{color:var(--amber);}
+  .line{margin:0 0 6px;}
+  .prompt::before{content:"guest@san5ezez:~$ "; color:var(--muted);}
+  #typed{white-space:pre-wrap;}
+  .cursor{display:inline-block; width:8px; height:1.1em; background:var(--cyan); vertical-align:-2px; animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero h1{
+    font-family:var(--mono);
+    font-size:clamp(28px, 4vw, 40px);
+    font-weight:800;
+    margin:26px 0 8px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 .name{color:var(--cyan);}
+  .hero p.lead{
+    color:var(--muted); font-size:17px; max-width:60ch; margin:0 0 22px;
+  }
+  .badges{display:flex; flex-wrap:wrap; gap:8px;}
+  .badge{
+    font-family:var(--mono); font-size:12.5px; color:var(--text);
+    border:1px solid var(--line); background:var(--panel);
+    padding:6px 10px; border-radius:6px;
+  }
+  .badge b{color:var(--amber); font-weight:600;}
+
+  /* ---------- section shell ---------- */
+  section{max-width:920px; margin:0 auto; padding:54px 24px;}
+  .section-head{
+    display:flex; align-items:baseline; gap:10px; margin-bottom:22px;
+    border-bottom:1px solid var(--line); padding-bottom:12px;
+  }
+  .section-head .tag{font-family:var(--mono); color:var(--muted); font-size:13px;}
+  .section-head h2{
+    font-family:var(--mono); font-size:22px; margin:0; font-weight:700;
+    color:var(--text);
+  }
+  .section-head h2 .slash{color:var(--cyan);}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:28px;}
+  .about-grid p{color:var(--muted); margin:0 0 14px;}
+  .stack{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 20px;
+    font-family:var(--mono); font-size:13.5px;
+  }
+  .stack .row{display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px dashed var(--line);}
+  .stack .row:last-child{border-bottom:none;}
+  .stack .row span:first-child{color:var(--muted);}
+  .stack .row span:last-child{color:var(--text);}
+
+  /* ---------- folders / projects ---------- */
+  .folders{display:flex; flex-direction:column; gap:14px;}
+  details.folder{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px; overflow:hidden;
+  }
+  details.folder[open]{border-color:#39445c;}
+  details.folder summary{
+    list-style:none; cursor:pointer;
+    display:flex; align-items:center; gap:12px;
+    padding:16px 18px;
+    font-family:var(--mono);
+  }
+  details.folder summary::-webkit-details-marker{display:none;}
+  .chev{transition:transform .18s; color:var(--muted); font-size:12px;}
+  details.folder[open] .chev{transform:rotate(90deg); color:var(--cyan);}
+  .folder-icon{font-size:16px;}
+  .folder-name{font-weight:700; font-size:15px;}
+  .folder-count{margin-left:auto; color:var(--muted); font-size:12.5px;}
+  .folder-desc{color:var(--muted); font-size:13px; font-family:var(--sans); margin-left:26px;}
+
+  .file-list{padding:0 18px 16px 46px; display:flex; flex-direction:column; gap:10px;}
+  .file{
+    display:flex; align-items:flex-start; gap:10px;
+    padding:10px 12px; background:var(--panel-2); border:1px solid var(--line);
+    border-radius:8px; text-decoration:none; color:var(--text);
+    transition:border-color .15s, transform .15s;
+  }
+  .file:hover{border-color:var(--cyan); transform:translateX(2px);}
+  .file .ext{font-family:var(--mono); font-size:11px; color:#0a0c10; background:var(--cyan);
+    padding:2px 6px; border-radius:4px; font-weight:700; align-self:center;}
+  .file .meta{flex:1;}
+  .file .fname{font-family:var(--mono); font-size:14px; font-weight:600;}
+  .file .fdesc{color:var(--muted); font-size:13px; margin-top:2px;}
+  .placeholder-note{
+    font-family:var(--mono); font-size:12px; color:var(--amber); margin-top:2px;
+  }
+
+  /* ---------- contact / footer ---------- */
+  .contact-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:26px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;
+  }
+  .contact-card .msg{font-family:var(--mono); font-size:14px; color:var(--muted); max-width:46ch;}
+  .btn{
+    font-family:var(--mono); font-size:13.5px; font-weight:600;
+    padding:11px 18px; border-radius:8px; text-decoration:none;
+    background:var(--cyan); color:#0a0c10; border:1px solid var(--cyan);
+    transition:opacity .15s;
+  }
+  .btn:hover{opacity:.85;}
+  .btn.ghost{background:transparent; color:var(--text); border-color:var(--line);}
+  .btn-row{display:flex; gap:10px; flex-wrap:wrap;}
+
+  footer{
+    text-align:center; padding:34px 24px 50px;
+    font-family:var(--mono); font-size:12px; color:var(--muted);
+  }
+
+  @media (max-width: 720px){
+    .about-grid{grid-template-columns:1fr;}
+    .topbar nav{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .cursor{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="dots"><span></span><span></span><span></span></div>
+  <div class="path">san5ezez.github.io <span class="muted">— /</span><b>home</b></div>
+  <nav>
+    <a href="#about">about</a>
+    <a href="#projects">projects</a>
+    <a href="#contact">contact</a>
+  </nav>
+</div>
+
+<div class="hero">
+  <div class="terminal">
+    <div class="terminal-head">
+      <div class="dots"><span></span><span></span><span></span></div>
+      bash — san5ezez
+    </div>
+    <div class="terminal-body">
+      <p class="line prompt"><span id="typed"></span><span class="cursor"></span></p>
+    </div>
+  </div>
+
+  <h1>Привет, я <span class="name">Александр</span> <span class="muted">(san5ezez)</span></h1>
+  <p class="lead">
+    Разработчик-универсал: пишу моды и плагины под игры, собираю Android-приложения,
+    автоматизирую всё на Python и делаю игры на Unity. Этот сайт — витрина того, чем я занимаюсь.
+  </p>
+  <div class="badges">
+    <span class="badge"><b>Mods</b> / Plugins</span>
+    <span class="badge"><b>Android</b> apps</span>
+    <span class="badge"><b>Python</b> scripts</span>
+    <span class="badge"><b>Unity</b> games</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-head">
+    <span class="tag">01</span>
+    <h2><span class="slash">/</span>about</h2>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p>Меня зовут Александр, я разработчик — люблю копаться в разном: от игровых модов
+      до мобильных приложений и собственных игровых проектов. Ник в сети — <b>san5ezez</b>,
+      там же лежит весь мой код.</p>
+      <p>Этот сайт собран как файловый менеджер: каждая категория — папка,
+      каждый проект — файл внутри неё. Открывай папки ниже и смотри, что внутри.</p>
+    </div>
+    <div class="stack">
+      <div class="row"><span>role</span><span>developer</span></div>
+      <div class="row"><span>focus</span><span>mods · plugins · apps · games</span></div>
+      <div class="row"><span>langs</span><span>Python, C#, Java/Kotlin</span></div>
+      <div class="row"><span>engine</span><span>Unity</span></div>
+      <div class="row"><span>github</span><span>san5ezez</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-head">
+    <span class="tag">02</span>
+    <h2><span class="slash">/</span>projects</h2>
+  </div>
+
+  <div class="folders">
+
+    <details class="folder" open>
+      <summary>
+        <span class="chev">▶</span>
+        <span class="folder-icon">📁</span>
+        <span class="folder-name">mods/</span>
+        <span class="folder-count">игровые моды</span>
+      </summary>
+      <div class="folder-desc">Модификации к играм — правки геймплея, новый контент, фиксы.</div>
+      <div class="file-list">
+        <a class="file" href="#">
+          <span class="ext">MOD</span>
+          <span class="meta">
+            <div class="fname">Название мода 1</div>
+            <div class="fdesc">Короткое описание: что добавляет / меняет мод.</div>
+          </span>
+        </a>
+        <a class="file" href="#">
+          <span class="ext">MOD</span>
+          <span class="meta">
+            <div class="fname">Название мода 2</div>
+            <div class="fdesc">Короткое описание проекта.</div>
+          </span>
+        </a>
+      </div>
+    </details>
+
+    <details class="folder">
+      <summary>
+        <span class="chev">▶</span>
+        <span class="folder-icon">📁</span>
+        <span class="folder-name">plugins/</span>
+        <span class="folder-count">плагины</span>
+      </summary>
+      <div class="folder-desc">Плагины для серверов и других платформ.</div>
+      <div class="file-list">
+        <a class="file" href="#">
+          <span class="ext">JAR</span>
+          <span class="meta">
+            <div class="fname">Название плагина 1</div>
+            <div class="fdesc">Что делает плагин, для какой платформы.</div>
+          </span>
+        </a>
+      </div>
+    </details>
+
+    <details class="folder">
+      <summary>
+        <span class="chev">▶</span>
+        <span class="folder-icon">📁</span>
+        <span class="folder-name">android/</span>
+        <span class="folder-count">приложения</span>
+      </summary>
+      <div class="folder-desc">Android-приложения.</div>
+      <div class="file-list">
+        <a class="file" href="#">
+          <span class="ext">APK</span>
+          <span class="meta">
+            <div class="fname">Название приложения 1</div>
+            <div class="fdesc">Что делает приложение.</div>
+          </span>
+        </a>
+      </div>
+    </details>
+
+    <details class="folder">
+      <summary>
+        <span class="chev">▶</span>
+        <span class="folder-icon">📁</span>
+        <span class="folder-name">python/</span>
+        <span class="folder-count">скрипты</span>
+      </summary>
+      <div class="folder-desc">Скрипты и инструменты на Python.</div>
+      <div class="file-list">
+        <a class="file" href="#">
+          <span class="ext">.PY</span>
+          <span class="meta">
+            <div class="fname">Название скрипта 1</div>
+            <div class="fdesc">Задача, которую решает скрипт.</div>
+          </span>
+        </a>
+      </div>
+    </details>
+
+    <details class="folder">
+      <summary>
+        <span class="chev">▶</span>
+        <span class="folder-icon">📁</span>
+        <span class="folder-name">unity/</span>
+        <span class="folder-count">игры</span>
+      </summary>
+      <div class="folder-desc">Игры и прототипы на движке Unity.</div>
+      <div class="file-list">
+        <a class="file" href="#">
+          <span class="ext">C#</span>
+          <span class="meta">
+            <div class="fname">Название игры 1</div>
+            <div class="fdesc">Жанр и суть игры в одном предложении.</div>
+          </span>
+        </a>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-head">
+    <span class="tag">03</span>
+    <h2><span class="slash">/</span>contact</h2>
+  </div>
+  <div class="contact-card">
+    <div class="msg">Весь код и актуальные проекты — в моём GitHub. Открыт к предложениям и вопросам.</div>
+    <div class="btn-row">
+      <a class="btn" href="https://github.com/san5ezez" target="_blank" rel="noopener">github.com/san5ezez</a>
+      <a class="btn ghost" href="#about">↑ наверх</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  san5ezez © <span id="year"></span> — сделано на чистом HTML/CSS/JS
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const lines = [
+    "whoami",
+    "> Александр (san5ezez) — developer",
+    "ls -la ./skills",
+    "> mods  plugins  android  python  unity"
+  ];
+  const el = document.getElementById('typed');
+  let li = 0, ci = 0, out = "";
+
+  function typeStep(){
+    if(li >= lines.length) return;
+    const current = lines[li];
+    if(ci <= current.length){
+      out = lines.slice(0, li).join("\n") + (li>0 ? "\n" : "") + current.slice(0, ci);
+      el.textContent = out;
+      ci++;
+      setTimeout(typeStep, 28);
+    } else {
+      li++; ci = 0;
+      setTimeout(typeStep, 350);
+    }
+  }
+  typeStep();
+</script>
+
+</body>
+</html>
